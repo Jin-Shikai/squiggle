@@ -1,0 +1,81 @@
+# Squiggle configuration.
+#
+# After editing, choose "Reload Config" from the menu bar item. A mistake in
+# this file is reported there and the previous configuration stays active.
+# Delete this file to get the defaults back.
+
+# Apps where the right button is left completely alone.
+#
+# Two reasons to add one. Either the app uses right-drag itself (3D software,
+# remote desktops, games), or the shortcuts a gesture sends mean something
+# else there: code editors indent with Cmd-[ / Cmd-], design tools reorder
+# layers.
+#
+# Find a bundle id with:  osascript -e 'id of app "Visual Studio Code"'
+passthrough = [
+    # Games that use the right button to move, aim or command must be here:
+    # the press is held back until release, so click-and-hold and right-drag
+    # never reach the game.
+    "com.riotgames.leagueoflegends",
+    "com.riotgames.LeagueofLegends.GameClient",
+    "com.riotgames.LeagueofLegends.LeagueClient",
+    "com.riotgames.LeagueofLegends.LeagueClientUx",
+    "com.riotgames.RiotGames.RiotClient",
+
+    # "com.blender.blender",
+    # "com.microsoft.rdc.macos",
+    # "com.microsoft.VSCode",
+    # "com.sublimetext.4",
+    # "com.adobe.Photoshop",
+    # "com.adobe.illustrator",
+    # "com.figma.Desktop",
+]
+
+[settings]
+step = 25               # pixels of travel needed to register one direction
+deadzone = 8            # total travel below this is a click, not a gesture
+wheel_cooldown = 0.15   # seconds between wheel actions; turns a trackpad
+                        # or free-spinning wheel burst into a single action
+show_trail = true
+trail_color = [0.28, 0.56, 1.0, 0.88]   # red, green, blue, alpha
+finder_root = "~"       # Finder's "parent folder" gesture stops here
+
+# Gestures: hold the right button and drag. Directions are L R U D, written
+# in drag order. WU and WD are the wheel turned up / down (physically, so
+# "natural scrolling" does not flip them) while the right button is held.
+#
+# Each gesture has a name, shown in the bubble, and exactly one of:
+#   keys   = "cmd+shift+["    a keystroke. Modifiers: cmd shift alt ctrl.
+#                             Keys: letters, digits, punctuation, left right
+#                             up down home end pageup pagedown space tab
+#                             return escape delete f1-f12.
+#   action = "finder_parent"  a built-in: finder_parent, finder_forward
+#   shell  = "open ~/Desktop" a shell command
+[gestures]
+L  = { name = "Back", keys = "cmd+[" }
+R  = { name = "Forward", keys = "cmd+]" }
+U  = { name = "Scroll to Top", keys = "home" }
+UD = { name = "Reload", keys = "cmd+r" }
+DR = { name = "Close Tab", keys = "cmd+w" }
+WU = { name = "Previous Tab", keys = "cmd+shift+[" }
+WD = { name = "Next Tab", keys = "cmd+shift+]" }
+
+# D  = { name = "New Tab", keys = "cmd+t" }
+# DL = { name = "Reopen Closed Tab", keys = "cmd+shift+t" }
+# UL = { name = "Previous Tab", keys = "cmd+shift+[" }
+# UR = { name = "Next Tab", keys = "cmd+shift+]" }
+
+# On keyboard layouts without dedicated [ ] keys (French, German), use the
+# arrow variants for back and forward; browsers accept both:
+# L = { name = "Back", keys = "cmd+left" }
+# R = { name = "Forward", keys = "cmd+right" }
+
+# Per-app overrides, keyed by bundle id. Gestures not listed fall through to
+# [gestures]; `false` disables one for that app.
+[apps."com.apple.finder"]
+L  = { name = "Parent Folder", action = "finder_parent" }
+R  = { name = "Forward", action = "finder_forward" }
+DR = { name = "Close Window", keys = "cmd+w" }
+
+# [apps."com.apple.dt.Xcode"]
+# DR = false

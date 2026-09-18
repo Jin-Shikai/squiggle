@@ -1,0 +1,43 @@
+# Squiggle
+
+System-wide mouse gestures for macOS. Lives in the menu bar.
+
+Hold the right mouse button and drag. A trail follows the pointer, and once a
+direction is recognised a small label shows what will happen.
+
+| Gesture | Action | Sends |
+|---|---|---|
+| right + drag left | Back | ⌘[ |
+| right + drag right | Forward | ⌘] |
+| right + drag up | Scroll to top | Home |
+| right + drag up, down | Reload | ⌘R |
+| right + drag down, right | Close tab | ⌘W |
+| right held + wheel up | Previous tab | ⌘⇧[ |
+| right held + wheel down | Next tab | ⌘⇧] |
+| right click, no movement | normal context menu | — |
+
+Finder gets its own set:
+
+| Gesture | Action |
+|---|---|
+| right + drag left | parent folder, stopping at `~/` |
+| right + drag right | back down into the subfolder you came from |
+| right + drag down, right | close window ⌘W |
+
+Every gesture is configurable, globally and per app.
+
+## Install
+
+Download `Squiggle-*.dmg` from Releases, open it, drag Squiggle onto the
+Applications folder and launch it. Apple Silicon only.
+
+macOS then asks for **Accessibility** permission, which Squiggle needs to
+see and replace right-button events. The menu bar icon shows `◌` while it
+waits and turns to `◉` as soon as the permission is granted; no restart
+needed. `◎` means gestures are switched off from the menu.
+
+To start at login, add Squiggle under System Settings > General > Login Items.
+
+## License
+
+MIT
