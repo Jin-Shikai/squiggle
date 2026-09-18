@@ -1,4 +1,4 @@
-# Squiggle — 跨 App 的一致鼠标手势体验
+# Squiggle
 
 **The same mouse gestures in every Mac app.** Browser, terminal, Finder, chat
 client: one set of right-button gestures that behaves the same everywhere.
