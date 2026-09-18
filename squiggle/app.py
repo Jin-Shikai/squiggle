@@ -9,6 +9,7 @@ import rumps
 from Foundation import NSBundle
 
 from . import __version__, config, finder
+from .demo import DemoPanel
 from .overlay import ARROWS, Overlay
 from .tap import GestureTap
 
@@ -57,17 +58,20 @@ class SquiggleApp(rumps.App):
         finder.set_root(cfg.finder_root)
 
         self.overlay = Overlay(cfg.show_trail, cfg.deadzone, cfg.trail_color)
-        self.tap = GestureTap(cfg, self.overlay)
+        self.demo = DemoPanel(cfg.trail_color[:3] + (1.0,))
+        self.tap = GestureTap(cfg, self.overlay, self.demo)
         self._tap_installed = False
 
         self.toggle_item = rumps.MenuItem("Enable Gestures", callback=self.toggle)
         self.toggle_item.state = 1
         self.trail_item = rumps.MenuItem("Show Trail", callback=self.toggle_trail)
         self.trail_item.state = 1 if cfg.show_trail else 0
+        self.demo_item = rumps.MenuItem("Demo Mode", callback=self.toggle_demo)
 
         self.menu = [
             self.toggle_item,
             self.trail_item,
+            self.demo_item,
             None,
             rumps.MenuItem("Edit Config...", callback=self.edit_config),
             rumps.MenuItem("Reload Config", callback=self.reload_config),
@@ -118,6 +122,11 @@ class SquiggleApp(rumps.App):
         if not self.overlay.enabled:
             self.overlay.end()
 
+    def toggle_demo(self, sender):
+        """Show the on-screen mouse for screen recordings, see demo.py."""
+        self.demo.set_visible(not self.demo.visible)
+        sender.state = 1 if self.demo.visible else 0
+
     def edit_config(self, _):
         subprocess.Popen(["/usr/bin/open", "-t", config.ensure_user_config()])
 
@@ -133,6 +142,7 @@ class SquiggleApp(rumps.App):
         self.overlay.enabled = cfg.show_trail
         self.overlay.deadzone = cfg.deadzone
         self.overlay.color = cfg.trail_color
+        self.demo.accent = cfg.trail_color[:3] + (1.0,)
         self.trail_item.state = 1 if cfg.show_trail else 0
 
     def show_help(self, _):

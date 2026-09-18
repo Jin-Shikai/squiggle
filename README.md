@@ -1,6 +1,36 @@
-# Squiggle
+# Squiggle — 跨 App 的一致鼠标手势体验
 
-System-wide mouse gestures for macOS. Lives in the menu bar.
+**The same mouse gestures in every Mac app.** Browser, terminal, Finder, chat
+client: one set of right-button gestures that behaves the same everywhere.
+Lives in the menu bar.
+
+Hold the right button and turn the wheel to switch tabs. The same gesture in
+Chrome, iTerm and Claude:
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/switch-tabs-chrome.gif" alt="Switching tabs in Chrome"></td>
+    <td width="50%"><img src="docs/switch-tabs-iterm.gif" alt="Switching tabs in iTerm"></td>
+  </tr>
+  <tr>
+    <td align="center">Chrome</td>
+    <td align="center">iTerm</td>
+  </tr>
+  <tr>
+    <td><img src="docs/switch-tabs-claude.gif" alt="Switching chats in Claude"></td>
+    <td><img src="docs/close-tab-chrome.gif" alt="Closing tabs with a down-right drag"></td>
+  </tr>
+  <tr>
+    <td align="center">Claude</td>
+    <td align="center">Drag down, then right: close tab</td>
+  </tr>
+</table>
+
+In Finder, drag left for the parent folder and right to go back down:
+
+<p align="center">
+  <img src="docs/finder-parent-forward.gif" width="60%" alt="Parent folder and forward in Finder">
+</p>
 
 Hold the right mouse button and drag. A trail follows the pointer, and once a
 direction is recognised a small label shows what will happen.
